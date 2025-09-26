@@ -44,6 +44,7 @@ dependencies {
 
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation("androidx.constraintlayout:constraintlayout:2.2.0")
     implementation(libs.games.activity)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

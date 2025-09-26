@@ -1,32 +1,44 @@
 package com.example.racingsim;
 
-import android.view.View;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageView;
 
-import com.google.androidgamesdk.GameActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends GameActivity {
-    static {
-        System.loadLibrary("racingsim");
-    }
+import com.example.racingsim.track.TrackData;
+import com.example.racingsim.track.TrackGenerator;
+import com.example.racingsim.track.TrackRenderer;
+
+public class MainActivity extends AppCompatActivity {
+
+    private ImageView trackImageView;
+    private final TrackGenerator trackGenerator = new TrackGenerator();
 
     @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        if (hasFocus) {
-            hideSystemUi();
-        }
+        trackImageView = findViewById(R.id.trackImageView);
+        Button generateButton = findViewById(R.id.generateButton);
+
+        generateButton.setOnClickListener(v -> generateAndShowTrack());
+        trackImageView.post(this::generateAndShowTrack);
     }
 
-    private void hideSystemUi() {
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-        );
+    private void generateAndShowTrack() {
+        int width = trackImageView.getWidth();
+        int height = trackImageView.getHeight();
+
+        if (width <= 0 || height <= 0) {
+            width = getResources().getDisplayMetrics().widthPixels;
+            height = (int) (width * 0.75f);
+        }
+
+        TrackData trackData = trackGenerator.generate(width, height);
+        Bitmap bitmap = TrackRenderer.renderTrack(width, height, trackData);
+        trackImageView.setImageBitmap(bitmap);
     }
 }
