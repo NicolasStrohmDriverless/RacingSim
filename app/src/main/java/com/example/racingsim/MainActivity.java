@@ -55,10 +55,13 @@ public class MainActivity extends AppCompatActivity {
             height = (int) (width * 0.75f);
         }
 
+        final int renderWidth = width;
+        final int renderHeight = height;
+
         final int requestId = generationCounter.incrementAndGet();
         renderExecutor.submit(() -> {
-            TrackData trackData = trackGenerator.generate(width, height);
-            Bitmap bitmap = TrackRenderer.renderTrack(width, height, trackData);
+            TrackData trackData = trackGenerator.generate(renderWidth, renderHeight);
+            Bitmap bitmap = TrackRenderer.renderTrack(renderWidth, renderHeight, trackData);
             mainHandler.post(() -> {
                 if (isDestroyed() || requestId != generationCounter.get()) {
                     bitmap.recycle();
