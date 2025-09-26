@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86",
+  "command": "/home/nico/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android35 --sysroot=/home/nico/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dracingsim_EXPORTS -isystem /home/nico/.gradle/caches/8.13/transforms/8e82d4db5201231ed447871a5ac03bad/transformed/games-activity-4.0.0/prefab/modules/game-activity_static/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -o CMakeFiles/racingsim.dir/main.cpp.o -c /home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp/main.cpp",
+  "file": "/home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp/main.cpp"
+},
+{
+  "directory": "/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86",
+  "command": "/home/nico/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android35 --sysroot=/home/nico/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dracingsim_EXPORTS -isystem /home/nico/.gradle/caches/8.13/transforms/8e82d4db5201231ed447871a5ac03bad/transformed/games-activity-4.0.0/prefab/modules/game-activity_static/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -o CMakeFiles/racingsim.dir/AndroidOut.cpp.o -c /home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp/AndroidOut.cpp",
+  "file": "/home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp/AndroidOut.cpp"
+},
+{
+  "directory": "/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86",
+  "command": "/home/nico/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android35 --sysroot=/home/nico/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dracingsim_EXPORTS -isystem /home/nico/.gradle/caches/8.13/transforms/8e82d4db5201231ed447871a5ac03bad/transformed/games-activity-4.0.0/prefab/modules/game-activity_static/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -o CMakeFiles/racingsim.dir/Renderer.cpp.o -c /home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp/Renderer.cpp",
+  "file": "/home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp/Renderer.cpp"
+},
+{
+  "directory": "/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86",
+  "command": "/home/nico/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android35 --sysroot=/home/nico/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dracingsim_EXPORTS -isystem /home/nico/.gradle/caches/8.13/transforms/8e82d4db5201231ed447871a5ac03bad/transformed/games-activity-4.0.0/prefab/modules/game-activity_static/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -o CMakeFiles/racingsim.dir/Shader.cpp.o -c /home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp/Shader.cpp",
+  "file": "/home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp/Shader.cpp"
+},
+{
+  "directory": "/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86",
+  "command": "/home/nico/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android35 --sysroot=/home/nico/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dracingsim_EXPORTS -isystem /home/nico/.gradle/caches/8.13/transforms/8e82d4db5201231ed447871a5ac03bad/transformed/games-activity-4.0.0/prefab/modules/game-activity_static/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -o CMakeFiles/racingsim.dir/TextureAsset.cpp.o -c /home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp/TextureAsset.cpp",
+  "file": "/home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp/TextureAsset.cpp"
+},
+{
+  "directory": "/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86",
+  "command": "/home/nico/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=i686-none-linux-android35 --sysroot=/home/nico/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dracingsim_EXPORTS -isystem /home/nico/.gradle/caches/8.13/transforms/8e82d4db5201231ed447871a5ac03bad/transformed/games-activity-4.0.0/prefab/modules/game-activity_static/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -o CMakeFiles/racingsim.dir/Utility.cpp.o -c /home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp/Utility.cpp",
+  "file": "/home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp/Utility.cpp"
+}
+]

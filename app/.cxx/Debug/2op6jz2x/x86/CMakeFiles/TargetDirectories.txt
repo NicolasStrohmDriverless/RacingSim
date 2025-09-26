@@ -1,0 +1,3 @@
+/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86/CMakeFiles/racingsim.dir
+/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86/CMakeFiles/edit_cache.dir
+/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86/CMakeFiles/rebuild_cache.dir
