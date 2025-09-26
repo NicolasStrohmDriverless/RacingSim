@@ -61,8 +61,12 @@ public class MapPoints {
         JSONArray array = new JSONArray();
         for (float[] point : points) {
             JSONArray entry = new JSONArray();
-            entry.put(point[0]);
-            entry.put(point[1]);
+            try {
+                entry.put(point[0]);
+                entry.put(point[1]);
+            } catch (JSONException e) {
+                throw new IllegalStateException("Failed to serialise map point", e);
+            }
             array.put(entry);
         }
         return array;
