@@ -24,11 +24,29 @@
         android:layout_marginTop="16dp"
         android:contentDescription="@string/generated_track_description"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/generateButton"
+        app:layout_constraintBottom_toTopOf="@+id/btn_open_3d"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleText" />
+
+    <Button
+        android:id="@+id/btn_open_3d"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/mario_red"
+        android:elevation="6dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/preview_3d_button"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/generateButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/generateButton"

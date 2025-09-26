@@ -1,4 +1,4 @@
-                        -H/home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp
+                        -H/home/nico/UNI/Android Programmierung/RacingSim/app/src/main/cpp
 -DCMAKE_SYSTEM_NAME=Android
 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 -DCMAKE_SYSTEM_VERSION=35
@@ -9,11 +9,11 @@
 -DCMAKE_ANDROID_NDK=/home/nico/Android/Sdk/ndk/27.0.12077973
 -DCMAKE_TOOLCHAIN_FILE=/home/nico/Android/Sdk/ndk/27.0.12077973/build/cmake/android.toolchain.cmake
 -DCMAKE_MAKE_PROGRAM=/home/nico/Android/Sdk/cmake/3.22.1/bin/ninja
--DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/home/nico/AndroidStudioProjects/RacingSIm/app/build/intermediates/cxx/Debug/2op6jz2x/obj/x86
--DCMAKE_RUNTIME_OUTPUT_DIRECTORY=/home/nico/AndroidStudioProjects/RacingSIm/app/build/intermediates/cxx/Debug/2op6jz2x/obj/x86
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/home/nico/UNI/Android Programmierung/RacingSim/app/build/intermediates/cxx/Debug/2op6jz2x/obj/x86
+-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=/home/nico/UNI/Android Programmierung/RacingSim/app/build/intermediates/cxx/Debug/2op6jz2x/obj/x86
 -DCMAKE_BUILD_TYPE=Debug
--DCMAKE_FIND_ROOT_PATH=/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/prefab/x86/prefab
--B/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86
+-DCMAKE_FIND_ROOT_PATH=/home/nico/UNI/Android Programmierung/RacingSim/app/.cxx/Debug/2op6jz2x/prefab/x86/prefab
+-B/home/nico/UNI/Android Programmierung/RacingSim/app/.cxx/Debug/2op6jz2x/x86
 -GNinja
                         Build command args: []
                         Version: 2

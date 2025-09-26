@@ -1,19 +1,19 @@
 {
   "buildFiles": [
-    "/home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp/CMakeLists.txt"
+    "/home/nico/UNI/Android Programmierung/RacingSim/app/src/main/cpp/CMakeLists.txt"
   ],
   "cleanCommandsComponents": [
     [
       "/home/nico/Android/Sdk/cmake/3.22.1/bin/ninja",
       "-C",
-      "/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86",
+      "/home/nico/UNI/Android Programmierung/RacingSim/app/.cxx/Debug/2op6jz2x/x86",
       "clean"
     ]
   ],
   "buildTargetsCommandComponents": [
     "/home/nico/Android/Sdk/cmake/3.22.1/bin/ninja",
     "-C",
-    "/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86",
+    "/home/nico/UNI/Android Programmierung/RacingSim/app/.cxx/Debug/2op6jz2x/x86",
     "{LIST_OF_TARGETS_TO_BUILD}"
   ],
   "libraries": {
@@ -21,7 +21,7 @@
       "toolchain": "toolchain",
       "abi": "x86",
       "artifactName": "racingsim",
-      "output": "/home/nico/AndroidStudioProjects/RacingSIm/app/build/intermediates/cxx/Debug/2op6jz2x/obj/x86/libracingsim.so",
+      "output": "/home/nico/UNI/Android Programmierung/RacingSim/app/build/intermediates/cxx/Debug/2op6jz2x/obj/x86/libracingsim.so",
       "runtimeFiles": []
     }
   },

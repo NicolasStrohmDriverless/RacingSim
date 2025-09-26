@@ -11,7 +11,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "x86"
+			"value" : "x86_64"
 		},
 		{
 			"name" : "ANDROID_NDK",
@@ -63,7 +63,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "x86"
+			"value" : "x86_64"
 		},
 		{
 			"name" : "CMAKE_ANDROID_NDK",
@@ -151,7 +151,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86"
+			"value" : "/home/nico/UNI/Android Programmierung/RacingSim/app/.cxx/Debug/2op6jz2x/x86_64"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -623,7 +623,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/prefab/x86/prefab"
+			"value" : "/home/nico/UNI/Android Programmierung/RacingSim/app/.cxx/Debug/2op6jz2x/prefab/x86_64/prefab"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -683,7 +683,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp"
+			"value" : "/home/nico/UNI/Android Programmierung/RacingSim/app/src/main/cpp"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -719,7 +719,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "/home/nico/AndroidStudioProjects/RacingSIm/app/build/intermediates/cxx/Debug/2op6jz2x/obj/x86"
+			"value" : "/home/nico/UNI/Android Programmierung/RacingSim/app/build/intermediates/cxx/Debug/2op6jz2x/obj/x86_64"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -991,7 +991,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "/home/nico/AndroidStudioProjects/RacingSIm/app/build/intermediates/cxx/Debug/2op6jz2x/obj/x86"
+			"value" : "/home/nico/UNI/Android Programmierung/RacingSim/app/build/intermediates/cxx/Debug/2op6jz2x/obj/x86_64"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1275,7 +1275,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/prefab/x86/prefab/lib/i686-linux-android/cmake/game-activity"
+			"value" : "/home/nico/UNI/Android Programmierung/RacingSim/app/.cxx/Debug/2op6jz2x/prefab/x86_64/prefab/lib/x86_64-linux-android/cmake/game-activity"
 		},
 		{
 			"name" : "racingsim_BINARY_DIR",
@@ -1287,7 +1287,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86"
+			"value" : "/home/nico/UNI/Android Programmierung/RacingSim/app/.cxx/Debug/2op6jz2x/x86_64"
 		},
 		{
 			"name" : "racingsim_IS_TOP_LEVEL",
@@ -1311,7 +1311,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp"
+			"value" : "/home/nico/UNI/Android Programmierung/RacingSim/app/src/main/cpp"
 		}
 	],
 	"kind" : "cache",

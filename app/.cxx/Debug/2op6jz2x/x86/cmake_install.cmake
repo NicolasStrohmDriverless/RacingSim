@@ -1,4 +1,4 @@
-# Install script for directory: /home/nico/AndroidStudioProjects/RacingSIm/app/src/main/cpp
+# Install script for directory: /home/nico/UNI/Android Programmierung/RacingSim/app/src/main/cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/nico/AndroidStudioProjects/RacingSIm/app/.cxx/Debug/2op6jz2x/x86/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/nico/UNI/Android Programmierung/RacingSim/app/.cxx/Debug/2op6jz2x/x86/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

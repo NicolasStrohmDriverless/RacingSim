@@ -1,0 +1,8 @@
+# ninja log v5
+1	334	1758896212627638171	CMakeFiles/racingsim.dir/AndroidOut.cpp.o	c7679fa35a6cbb0f
+1	352	1758896212643638028	CMakeFiles/racingsim.dir/Utility.cpp.o	5781d085fe6433fd
+1	355	1758896212646638001	CMakeFiles/racingsim.dir/Shader.cpp.o	400d8fe53d9ffffb
+1	377	1758896212669637796	CMakeFiles/racingsim.dir/TextureAsset.cpp.o	fc99fa54b6967fd7
+0	381	1758896212674637751	CMakeFiles/racingsim.dir/main.cpp.o	ab243eeaec301069
+1	511	1758896212800636628	CMakeFiles/racingsim.dir/Renderer.cpp.o	cd81f657170e34ba
+511	533	1758896212828636379	/home/nico/UNI/Android Programmierung/RacingSim/app/build/intermediates/cxx/Debug/2op6jz2x/obj/x86_64/libracingsim.so	c44bdf6f6d4ab90c

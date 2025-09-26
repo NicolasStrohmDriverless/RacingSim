@@ -3,4 +3,5 @@
     <string name="start_title">Kart Track Designer</string>
     <string name="generate_button">Track generieren</string>
     <string name="generated_track_description">Bunter Cartoon-Streckenplan mit blauen und gelben Kegeln</string>
+    <string name="preview_3d_button">3D Preview</string>
 </resources>
