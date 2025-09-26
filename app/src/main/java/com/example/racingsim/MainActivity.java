@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Process;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -20,15 +22,25 @@ import com.example.racingsim.ui.Map3DActivity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     private ImageView trackImageView;
     private final TrackGenerator trackGenerator = new TrackGenerator();
     private final MapPointsProvider mapPointsProvider = new DefaultMapPointsProvider();
     private TrackData lastGeneratedTrack;
-    private final ExecutorService renderExecutor = Executors.newSingleThreadExecutor();
+    private final ExecutorService renderExecutor = Executors.newSingleThreadExecutor(task -> {
+        Thread thread = new Thread(() -> {
+            Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+            task.run();
+        }, "TrackRenderWorker");
+        thread.setDaemon(true);
+        return thread;
+    });
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private final AtomicInteger generationCounter = new AtomicInteger();
 
@@ -59,18 +71,22 @@ public class MainActivity extends AppCompatActivity {
         final int renderHeight = height;
 
         final int requestId = generationCounter.incrementAndGet();
-        renderExecutor.submit(() -> {
-            TrackData trackData = trackGenerator.generate(renderWidth, renderHeight);
-            Bitmap bitmap = TrackRenderer.renderTrack(renderWidth, renderHeight, trackData);
-            mainHandler.post(() -> {
-                if (isDestroyed() || requestId != generationCounter.get()) {
-                    bitmap.recycle();
-                    return;
-                }
-                lastGeneratedTrack = trackData;
-                trackImageView.setImageBitmap(bitmap);
+        try {
+            renderExecutor.submit(() -> {
+                TrackData trackData = trackGenerator.generate(renderWidth, renderHeight);
+                Bitmap bitmap = TrackRenderer.renderTrack(renderWidth, renderHeight, trackData);
+                mainHandler.post(() -> {
+                    if (isDestroyed() || requestId != generationCounter.get()) {
+                        bitmap.recycle();
+                        return;
+                    }
+                    lastGeneratedTrack = trackData;
+                    trackImageView.setImageBitmap(bitmap);
+                });
             });
-        });
+        } catch (RejectedExecutionException exception) {
+            Log.w(TAG, "Render executor rejected track generation request", exception);
+        }
     }
 
     private void open3DPreview() {
