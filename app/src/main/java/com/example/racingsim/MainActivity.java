@@ -3,6 +3,8 @@ package com.example.racingsim;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -16,12 +18,19 @@ import com.example.racingsim.track.TrackGenerator;
 import com.example.racingsim.track.TrackRenderer;
 import com.example.racingsim.ui.Map3DActivity;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class MainActivity extends AppCompatActivity {
 
     private ImageView trackImageView;
     private final TrackGenerator trackGenerator = new TrackGenerator();
     private final MapPointsProvider mapPointsProvider = new DefaultMapPointsProvider();
     private TrackData lastGeneratedTrack;
+    private final ExecutorService renderExecutor = Executors.newSingleThreadExecutor();
+    private final Handler mainHandler = new Handler(Looper.getMainLooper());
+    private final AtomicInteger generationCounter = new AtomicInteger();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +55,19 @@ public class MainActivity extends AppCompatActivity {
             height = (int) (width * 0.75f);
         }
 
-        TrackData trackData = trackGenerator.generate(width, height);
-        lastGeneratedTrack = trackData;
-        Bitmap bitmap = TrackRenderer.renderTrack(width, height, trackData);
-        trackImageView.setImageBitmap(bitmap);
+        final int requestId = generationCounter.incrementAndGet();
+        renderExecutor.submit(() -> {
+            TrackData trackData = trackGenerator.generate(width, height);
+            Bitmap bitmap = TrackRenderer.renderTrack(width, height, trackData);
+            mainHandler.post(() -> {
+                if (isDestroyed() || requestId != generationCounter.get()) {
+                    bitmap.recycle();
+                    return;
+                }
+                lastGeneratedTrack = trackData;
+                trackImageView.setImageBitmap(bitmap);
+            });
+        });
     }
 
     private void open3DPreview() {
@@ -65,5 +83,11 @@ public class MainActivity extends AppCompatActivity {
             points = MapPoints.createDemoCourse();
         }
         return points.toJsonString();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        renderExecutor.shutdownNow();
     }
 }
