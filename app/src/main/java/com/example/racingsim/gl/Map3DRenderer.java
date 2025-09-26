@@ -35,6 +35,7 @@ public class Map3DRenderer implements GLSurfaceView.Renderer {
     private static final float MIN_CAMERA_PITCH = 10f;
     private static final float MAX_CAMERA_PITCH = 80f;
     private static final float GROUND_MARGIN = 12f;
+    private static final float MAX_NORMALISED_RADIUS = 40f;
 
     private final Context context;
     private final List<float[]> bluePoints = new ArrayList<>();
@@ -80,10 +81,86 @@ public class Map3DRenderer implements GLSurfaceView.Renderer {
         MapPoints safePoints = mapPoints != null ? mapPoints : MapPoints.createDemoCourse();
         copyPoints(safePoints.getBlue(), bluePoints);
         copyPoints(safePoints.getYellow(), yellowPoints);
+        normaliseCourse();
         computeSceneRadius();
         orbitDistance = clamp(Math.max(DEFAULT_CAMERA_DISTANCE, sceneRadius * 1.2f),
                 MIN_CAMERA_DISTANCE, MAX_CAMERA_DISTANCE);
         normaliseLightDirection();
+    }
+
+    private void normaliseCourse() {
+        if (bluePoints.isEmpty() && yellowPoints.isEmpty()) {
+            return;
+        }
+
+        float minX = Float.MAX_VALUE;
+        float minY = Float.MAX_VALUE;
+        float maxX = -Float.MAX_VALUE;
+        float maxY = -Float.MAX_VALUE;
+
+        minX = updateMin(bluePoints, 0, minX);
+        minX = updateMin(yellowPoints, 0, minX);
+        maxX = updateMax(bluePoints, 0, maxX);
+        maxX = updateMax(yellowPoints, 0, maxX);
+        minY = updateMin(bluePoints, 1, minY);
+        minY = updateMin(yellowPoints, 1, minY);
+        maxY = updateMax(bluePoints, 1, maxY);
+        maxY = updateMax(yellowPoints, 1, maxY);
+
+        if (minX == Float.MAX_VALUE || minY == Float.MAX_VALUE
+                || maxX == -Float.MAX_VALUE || maxY == -Float.MAX_VALUE) {
+            return;
+        }
+
+        float centerX = (minX + maxX) * 0.5f;
+        float centerY = (minY + maxY) * 0.5f;
+
+        float maxRadius = recenter(bluePoints, centerX, centerY);
+        maxRadius = Math.max(maxRadius, recenter(yellowPoints, centerX, centerY));
+
+        if (maxRadius <= 0f) {
+            return;
+        }
+
+        if (maxRadius > MAX_NORMALISED_RADIUS) {
+            float scale = MAX_NORMALISED_RADIUS / maxRadius;
+            scalePoints(bluePoints, scale);
+            scalePoints(yellowPoints, scale);
+        }
+    }
+
+    private float updateMin(List<float[]> points, int index, float currentMin) {
+        float min = currentMin;
+        for (float[] point : points) {
+            min = Math.min(min, point[index]);
+        }
+        return min;
+    }
+
+    private float updateMax(List<float[]> points, int index, float currentMax) {
+        float max = currentMax;
+        for (float[] point : points) {
+            max = Math.max(max, point[index]);
+        }
+        return max;
+    }
+
+    private float recenter(List<float[]> points, float centerX, float centerY) {
+        float maxRadius = 0f;
+        for (float[] point : points) {
+            point[0] -= centerX;
+            point[1] -= centerY;
+            float radius = (float) Math.sqrt(point[0] * point[0] + point[1] * point[1]);
+            maxRadius = Math.max(maxRadius, radius);
+        }
+        return maxRadius;
+    }
+
+    private void scalePoints(List<float[]> points, float scale) {
+        for (float[] point : points) {
+            point[0] *= scale;
+            point[1] *= scale;
+        }
     }
 
     private void copyPoints(List<float[]> source, List<float[]> target) {
