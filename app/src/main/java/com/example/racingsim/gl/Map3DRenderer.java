@@ -15,15 +15,13 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 /**
- * Renderer responsible for drawing the ground, cones and the billboard car preview.
+ * Renderer responsible for drawing the ground, cylinders and the billboard car preview.
  */
 public class Map3DRenderer implements GLSurfaceView.Renderer {
 
-    private static final float CONE_HEIGHT_M = 0.45f;
-    private static final float CONE_RADIUS_M = 0.115f;
-    private static final int CONE_SLICES = 32;
-    private static final float STRIPE_CENTER_RATIO = 0.25f;
-    private static final float STRIPE_HEIGHT_RATIO = 0.06f;
+    private static final float CYLINDER_HEIGHT_M = 0.45f;
+    private static final float CYLINDER_RADIUS_M = 0.115f;
+    private static final int CYLINDER_SLICES = 32;
 
     private static final float CAR_WIDTH_M = 1.6f;
     private static final float CAR_HEIGHT_M = 1.2f;
@@ -50,8 +48,8 @@ public class Map3DRenderer implements GLSurfaceView.Renderer {
     private ShaderProgram colorProgram;
     private TexturedProgram texturedProgram;
 
-    private Mesh blueConeMesh;
-    private Mesh yellowConeMesh;
+    private Mesh blueCylinderMesh;
+    private Mesh yellowCylinderMesh;
     private Mesh groundMesh;
     private Mesh carBillboardMesh;
 
@@ -205,18 +203,13 @@ public class Map3DRenderer implements GLSurfaceView.Renderer {
         textureAttributeLocations[1] = texturedProgram.getTexCoordAttribute();
 
         GeometryFactory.Color3f blueBody = new GeometryFactory.Color3f(0.0f, 0.35f, 0.9f);
-        GeometryFactory.Color3f blueStripe = new GeometryFactory.Color3f(1f, 1f, 1f);
         GeometryFactory.Color3f yellowBody = new GeometryFactory.Color3f(0.95f, 0.8f, 0.05f);
-        GeometryFactory.Color3f yellowStripe = new GeometryFactory.Color3f(0f, 0f, 0f);
         GeometryFactory.Color3f groundColor = new GeometryFactory.Color3f(0.1f, 0.1f, 0.12f);
 
-        float stripeCenter = CONE_HEIGHT_M * STRIPE_CENTER_RATIO;
-        float stripeHeight = CONE_HEIGHT_M * STRIPE_HEIGHT_RATIO;
-
-        blueConeMesh = GeometryFactory.createConeWithStripe(CONE_RADIUS_M, CONE_HEIGHT_M, CONE_SLICES,
-                stripeCenter, stripeHeight, blueBody, blueStripe);
-        yellowConeMesh = GeometryFactory.createConeWithStripe(CONE_RADIUS_M, CONE_HEIGHT_M, CONE_SLICES,
-                stripeCenter, stripeHeight, yellowBody, yellowStripe);
+        blueCylinderMesh = GeometryFactory.createCylinder(CYLINDER_RADIUS_M, CYLINDER_HEIGHT_M,
+                CYLINDER_SLICES, blueBody);
+        yellowCylinderMesh = GeometryFactory.createCylinder(CYLINDER_RADIUS_M, CYLINDER_HEIGHT_M,
+                CYLINDER_SLICES, yellowBody);
         groundMesh = GeometryFactory.createGround(sceneRadius * 2f, groundColor);
         carBillboardMesh = GeometryFactory.createTexturedQuad(CAR_WIDTH_M, CAR_HEIGHT_M);
 
@@ -254,8 +247,8 @@ public class Map3DRenderer implements GLSurfaceView.Renderer {
         Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
 
         drawGround();
-        drawCones(blueConeMesh, bluePoints);
-        drawCones(yellowConeMesh, yellowPoints);
+        drawCylinders(blueCylinderMesh, bluePoints);
+        drawCylinders(yellowCylinderMesh, yellowPoints);
         drawCarBillboard(yaw);
     }
 
@@ -270,7 +263,7 @@ public class Map3DRenderer implements GLSurfaceView.Renderer {
         groundMesh.draw(GLES20.GL_TRIANGLES, colorAttributeLocations);
     }
 
-    private void drawCones(Mesh mesh, List<float[]> points) {
+    private void drawCylinders(Mesh mesh, List<float[]> points) {
         colorProgram.use();
         GLES20.glUniform3f(colorLightDirectionLocation, normalizedLightDirection[0],
                 normalizedLightDirection[1], normalizedLightDirection[2]);

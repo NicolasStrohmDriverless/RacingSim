@@ -122,6 +122,114 @@ public final class GeometryFactory {
         return new Mesh(vertexArray, indexArray, new int[]{3, 3, 3});
     }
 
+    public static Mesh createCylinder(float radius,
+                                      float height,
+                                      int slices,
+                                      Color3f color) {
+        int ringCount = 2;
+        int verticesPerRing = slices + 1;
+        int totalSideVertices = ringCount * verticesPerRing;
+        List<Float> vertices = new ArrayList<>(totalSideVertices * 9);
+
+        float[] ringHeights = new float[]{0f, height};
+        for (int ringIndex = 0; ringIndex < ringCount; ringIndex++) {
+            float currentHeight = ringHeights[ringIndex];
+            for (int slice = 0; slice <= slices; slice++) {
+                float angle = (float) (2.0 * Math.PI * slice / slices);
+                float cos = (float) Math.cos(angle);
+                float sin = (float) Math.sin(angle);
+                float x = radius * cos;
+                float y = radius * sin;
+                float nx = cos;
+                float ny = sin;
+                // Position (x, y, z)
+                vertices.add(x);
+                vertices.add(y);
+                vertices.add(currentHeight);
+                // Normal (x, y, z)
+                vertices.add(nx);
+                vertices.add(ny);
+                vertices.add(0f);
+                // Color (r, g, b)
+                vertices.add(color.r);
+                vertices.add(color.g);
+                vertices.add(color.b);
+            }
+        }
+
+        List<Short> indices = new ArrayList<>(slices * (ringCount - 1) * 6 + slices * 6);
+        for (int ring = 0; ring < ringCount - 1; ring++) {
+            int ringStart = ring * verticesPerRing;
+            int nextRingStart = (ring + 1) * verticesPerRing;
+            for (int slice = 0; slice < slices; slice++) {
+                short current = (short) (ringStart + slice);
+                short next = (short) (ringStart + slice + 1);
+                short upper = (short) (nextRingStart + slice);
+                short upperNext = (short) (nextRingStart + slice + 1);
+
+                indices.add(current);
+                indices.add(upper);
+                indices.add(upperNext);
+
+                indices.add(current);
+                indices.add(upperNext);
+                indices.add(next);
+            }
+        }
+
+        // Bottom disc (downward normal)
+        short bottomCenterIndex = (short) (totalSideVertices);
+        vertices.add(0f);
+        vertices.add(0f);
+        vertices.add(0f);
+        vertices.add(0f);
+        vertices.add(0f);
+        vertices.add(-1f);
+        vertices.add(color.r);
+        vertices.add(color.g);
+        vertices.add(color.b);
+
+        for (int slice = 0; slice < slices; slice++) {
+            short current = (short) slice;
+            short next = (short) (slice + 1);
+            indices.add(bottomCenterIndex);
+            indices.add(next);
+            indices.add(current);
+        }
+
+        // Top disc (upward normal)
+        short topCenterIndex = (short) (totalSideVertices + 1);
+        vertices.add(0f);
+        vertices.add(0f);
+        vertices.add(height);
+        vertices.add(0f);
+        vertices.add(0f);
+        vertices.add(1f);
+        vertices.add(color.r);
+        vertices.add(color.g);
+        vertices.add(color.b);
+
+        int topRingStart = verticesPerRing;
+        for (int slice = 0; slice < slices; slice++) {
+            short current = (short) (topRingStart + slice);
+            short next = (short) (topRingStart + slice + 1);
+            indices.add(topCenterIndex);
+            indices.add(current);
+            indices.add(next);
+        }
+
+        float[] vertexArray = new float[vertices.size()];
+        for (int i = 0; i < vertices.size(); i++) {
+            vertexArray[i] = vertices.get(i);
+        }
+        short[] indexArray = new short[indices.size()];
+        for (int i = 0; i < indices.size(); i++) {
+            indexArray[i] = indices.get(i);
+        }
+
+        return new Mesh(vertexArray, indexArray, new int[]{3, 3, 3});
+    }
+
     private static Color3f selectColorForHeight(float height,
                                                 float stripeLower,
                                                 float stripeUpper,
