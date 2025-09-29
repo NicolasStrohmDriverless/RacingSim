@@ -2,6 +2,7 @@ package com.example.racingsim.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
@@ -33,6 +34,10 @@ public class Map3DActivity extends Activity {
         }
 
         ViewGroup container = findViewById(R.id.map3d_container);
+        View pedalContainer = findViewById(R.id.pedal_container);
+        if (pedalContainer != null) {
+            pedalContainer.setVisibility(View.GONE);
+        }
         map3DView = new Map3DView(this, points);
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,

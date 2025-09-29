@@ -5,4 +5,10 @@
     <string name="generated_track_description">Bunter Cartoon-Streckenplan mit blauen und gelben Kegeln</string>
     <string name="preview_3d_button">3D Preview</string>
     <string name="error_no_track_available">Keine Strecke verfügbar</string>
+    <string name="content_description_toggle_theme">Darstellung zwischen Hell- und Dunkelmodus wechseln</string>
+    <string name="label_accelerate">Gas</string>
+    <string name="label_brake">Bremse</string>
+    <string name="content_description_accelerate">Gas geben</string>
+    <string name="content_description_brake">Bremsen</string>
+    <string name="message_no_accelerometer">Kein Beschleunigungssensor verfügbar</string>
 </resources>
