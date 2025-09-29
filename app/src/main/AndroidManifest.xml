@@ -20,8 +20,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.Map3DActivity"
-            android:exported="false" />
+            android:name=".preview.PreviewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.RacingSIm" />
     </application>
 
 </manifest>

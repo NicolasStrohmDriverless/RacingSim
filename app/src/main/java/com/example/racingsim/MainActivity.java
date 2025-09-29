@@ -2,6 +2,7 @@ package com.example.racingsim;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.PointF;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -9,16 +10,17 @@ import android.os.Process;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.racingsim.model.DefaultMapPointsProvider;
 import com.example.racingsim.model.MapPoints;
 import com.example.racingsim.model.MapPointsProvider;
+import com.example.racingsim.preview.PreviewActivity;
 import com.example.racingsim.track.TrackData;
 import com.example.racingsim.track.TrackGenerator;
 import com.example.racingsim.track.TrackRenderer;
-import com.example.racingsim.ui.Map3DActivity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -90,9 +92,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void open3DPreview() {
-        Intent intent = new Intent(this, Map3DActivity.class);
-        intent.putExtra(Map3DActivity.EXTRA_MAP_POINTS_JSON, collectMapPointsJson());
+        if (lastGeneratedTrack == null) {
+            Toast.makeText(this, R.string.error_no_track_available, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        float[] points = buildCenterlineArray(lastGeneratedTrack);
+        if (points == null || points.length < 4) {
+            Toast.makeText(this, R.string.error_no_track_available, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        float width = lastGeneratedTrack.getTrackWidth();
+        if (width <= 0.0f) {
+            width = 8.0f;
+        }
+
+        Intent intent = new Intent(this, PreviewActivity.class);
+        intent.putExtra(PreviewActivity.EXTRA_TRACK_POINTS, points);
+        intent.putExtra(PreviewActivity.EXTRA_TRACK_WIDTH, width);
         startActivity(intent);
+    }
+
+    private float[] buildCenterlineArray(TrackData data) {
+        if (data == null) {
+            return null;
+        }
+        java.util.List<PointF> source = data.getCenterlinePoints();
+        if (source == null || source.size() < 2) {
+            return null;
+        }
+        float[] buffer = new float[source.size() * 2];
+        for (int i = 0; i < source.size(); i++) {
+            PointF point = source.get(i);
+            buffer[i * 2] = point.x;
+            buffer[i * 2 + 1] = point.y;
+        }
+        return buffer;
     }
 
     private String collectMapPointsJson() {

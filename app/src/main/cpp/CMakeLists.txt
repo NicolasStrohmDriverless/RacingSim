@@ -1,36 +1,30 @@
-# For more information about using CMake with Android Studio, read the
-# documentation: https://d.android.com/studio/projects/add-native-code.html
-
 cmake_minimum_required(VERSION 3.22.1)
 
-project("racingsim")
+project(racingsim)
 
-# Creates your game shared library. The name must be the same as the
-# one used for loading in your Kotlin/Java or AndroidManifest.txt files.
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 add_library(racingsim SHARED
-        main.cpp
-        AndroidOut.cpp
-        Renderer.cpp
-        Shader.cpp
-        TextureAsset.cpp
-        Utility.cpp)
+        jni_bridge.cpp
+        renderer.cpp
+        track_mesh.cpp
+        vehicle.cpp)
 
-# Searches for a package provided by the game activity dependency
-find_package(game-activity REQUIRED CONFIG)
+target_include_directories(racingsim
+        PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/math_glm)
 
-# Forces the linker to keep the JNI entry point for GameActivity
-set(CMAKE_SHARED_LINKER_FLAGS
-        "${CMAKE_SHARED_LINKER_FLAGS} -u Java_com_google_androidgamesdk_GameActivity_initializeNativeCode")
+find_library(log-lib log)
+find_library(android-lib android)
+find_library(gles-lib GLESv3)
+find_library(egl-lib EGL)
 
-# Configure libraries CMake uses to link your target library.
 target_link_libraries(racingsim
-        # The game activity
-        game-activity::game-activity_static
-
-        # EGL and other dependent libraries required for drawing
-        # and interacting with Android system
-        EGL
-        GLESv3
-        jnigraphics
-        android
-        log)
+        PRIVATE
+        ${log-lib}
+        ${android-lib}
+        ${gles-lib}
+        ${egl-lib})
